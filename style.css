@@ -30,29 +30,80 @@ body{
   background-image: linear-gradient(45deg, var(--color5)50%, var(--color4)50%);
 }
 
+div.compartilhar_site{
+  position: absolute;
+  top:10%;
+  left: 0%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--color1);
+  background-color: var(--color3);
+  color: var(--color2);
+  width:8vw;
+  height:8vw;
+}
+
+div.compartilhar_site img.icn_comp{
+  width: 3.8vw;
+}
+
+div.comp{
+  position: absolute;
+  transition: .35s;
+  top: 0;
+  left: -100vw;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255,255,255,1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+div.comp button{
+  position: absolute;
+  top:0;
+  right:0;
+  width: 20%;
+  text-align: center;
+  background-color: #db3a3a;
+  color: rgb(255,255,255);
+  margin: 5vw;
+}
+div.comp img{
+  width: 70%;
+}
 div.correct_symbol{
   position: absolute;
   top: 0;
   right: 0;
-  width: 30px;
-  height: 30px;
+  width: 8vw;
+  height: 8vw;
   border-radius: 50%;
   background-color: var(--color3);
   color: var(--color2);
-  margin-right: 60px;
+  margin-right: 9vw;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 div.error_symbol{
   position: absolute;
   top: 0;
   right: 0;
-  width: 30px;
-  height: 30px;
+  width: 8vw;
+  height: 8vw;
   border-radius: 50%;
   background-color: var(--color5);
   color: var(--color2);
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h2{
@@ -68,9 +119,15 @@ h2{
 }
 
 .animation_correct{
-/*ANIMAÇÃO DE ENTRADA*/
+/*ANIMAÇÃO DE ACERTO*/
   animation-name: tada;
   animation-duration: 500ms;
+}
+
+.animation_erro{
+/*ANIMAÇÃO DE ERRO*/
+  animation-name: fadeOutDown;
+  animation-duration: 550ms;
 }
 
 main{

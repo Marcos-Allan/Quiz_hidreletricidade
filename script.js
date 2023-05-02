@@ -13,16 +13,25 @@ const animation_entrada= document.querySelector('.animation_entrada')
 
 const animation_correct= document.querySelector('.animation_correct')
 
+const animation_erro= document.querySelector('.animation_erro')
+
 let marcQuestCorrect = [0,1]
 
-let correct_symbol = document.querySelector('.correct_symbol')
-let error_symbol = document.querySelector('.error_symbol')
+let marcQuestErro1 = [1,0]
+let marcQuestErro2 = [2,2]
+
+let correct_symbol = document.querySelector('.correct_symbol_p')
+let error_symbol = document.querySelector('.error_symbol_p')
 
 import questions from "./questions.js"
 
 let currentIndex = 0
 let questionsCorrect = 0
 let questionsError = 0
+
+correct_symbol.innerText = questionsCorrect
+error_symbol.innerText = questionsError
+
 
 btnRestart.onclick= () => {
   
@@ -48,20 +57,35 @@ function nextQuestion(e) {
   quetCorr.map((el)=>{
     el.removeEventListener("click",nextQuestion)
   })
-  quetCorr[marcQuestCorrect[currentIndex]].classList.add('animation_correct')
   
-  quetCorr[marcQuestCorrect[currentIndex]].style.backgroundColor="var(--color3)"
-    
-  setTimeout(function() {
     //SE ACERTAR A QUESTÃO
     if(e.target.getAttribute("data-correct") === "true") {
+      
+      quetCorr[marcQuestCorrect[currentIndex]].classList.add('animation_correct')
+  
+      quetCorr[marcQuestCorrect[currentIndex]].style.backgroundColor="var(--color3)"
+      
       questionsCorrect++
       correct_symbol.innerText = questionsCorrect
     }else{
+      
+      quetCorr[marcQuestErro1[currentIndex]].classList.add('animation_erro')
+  
+      quetCorr[marcQuestErro1[currentIndex]].style.backgroundColor="var(--color1)"
+      
+      quetCorr[marcQuestErro2[currentIndex]].classList.add('animation_erro')
+  
+      quetCorr[marcQuestErro2[currentIndex]].style.backgroundColor="var(--color1)"
+      
+      quetCorr[marcQuestCorrect[currentIndex]].classList.add('animation_erro')
+  
+      quetCorr[marcQuestCorrect[currentIndex]].style.backgroundColor="var(--color1)"
+      
       questionsError++
       error_symbol.innerText = questionsError
     }
     
+  setTimeout(function() {
     //CASO NÃO TENHA ACABADO AS QUESTÕES
     if(currentIndex < questions.length -1) {
       currentIndex++
@@ -72,7 +96,7 @@ function nextQuestion(e) {
     else{
       finish()
     }
-  }, 600); 
+  }, 650); 
 }
 
 function finish() {
@@ -108,3 +132,14 @@ function loadQuestion() {
 }
 
 loadQuestion()
+
+//ABA DO QRCODE E FUNCIONALIDADES DAS MESMAS
+const div_qrCode = document.querySelector('.comp')
+const aba_comp = document.querySelector('.compartilhar_site')
+aba_comp.addEventListener('click',()=>{
+  div_qrCode.style.left="0"
+})
+const btnFec = document.querySelector('.btn_fec')
+btnFec.addEventListener('click',()=>{
+  div_qrCode.style.left="-100vw"
+})
